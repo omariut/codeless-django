@@ -1,0 +1,24 @@
+<button class=" btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#model_meta_form_{{app_name}}_{{model_name}}">
+    <i class="fa fa-plus"></i>  Add Meta
+  </button>
+  
+  
+    <div  class="collapse row border-bottom" id="model_meta_form_{{app_name}}_{{model_name}}">
+  
+  <form action="{%url 'add-model-meta' model_name app_name %}" method="post" class="form-group">
+    <label for="app_label">app_label</label>
+    <input type="text" name="app_label" id="app_label">
+    <label for="ordering">ordering</label>
+    <input type="text" name="ordering" id="ordering" placeholder="['-pub_date', 'author']">
+    <label for="permissions">permissions</label>
+    <input type="text" name="permissions" id="permissions" placeholder="[('can_deliver_pizzas', 'Can deliver pizzas')]">
+
+    <label for="unique_together">unique_together</label>
+    <input type="text" name="unique_together" id="unique_together" placeholder="['driver', 'restaurant']">
+
+    <label for="db_table">db_table</label>
+    <input type="text" name="db_table" id="db_table">
+
+      <button type="submit">Submit</button>
+  </form>
+  </div>

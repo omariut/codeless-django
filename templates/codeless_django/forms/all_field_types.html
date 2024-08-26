@@ -1,0 +1,5 @@
+
+{% load codeless_django_tags %}
+{% for type in ''|get_all_fields %}
+<option value={{type}}>{{type}}</option>
+{%endfor%}

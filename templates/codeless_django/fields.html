@@ -1,0 +1,14 @@
+{%for kk,vv in fields.items %}
+        
+{% with field_name=kk options=vv.options type=vv.type %} 
+<li>{{field_name}}={{type}}
+    (
+
+    {%for option in options %}
+    {{option.name}}={{option.value}},
+    {%endfor%}
+  )
+ <a class="trash" href="{% url 'delete-field' app_name model_name field_name %}"><i class="fa fa-minus-circle"></i></a>
+</li>
+{%endwith%}
+{%endfor%}

@@ -1,0 +1,25 @@
+
+
+<button class=" btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#field_form_{{app_name}}_{{model_name}}">
+  <i class="fa fa-plus"></i> Add Field
+</button>
+
+
+  <div  class="collapse row border-bottom" id="field_form_{{app_name}}_{{model_name}}">
+
+<form action="{%url 'add-field' model_name app_name %}" method="post" class="form-group" >
+    <label for="field_name">field name</label>
+    <input type="text" name="field_name" required>
+    <label for="field_type">field type</label>
+    <select hx-get="{%url 'get_field_options' %}" hx-include="[name='field_type']"
+    hx-swap="innerHTML" hx-target="#field_option_{{app_name}}_{{model_name}}" type="text" name="field_class"> field_type 
+
+    {%include 'codeless_django/forms/all_field_types.html'%}
+
+</select>
+    <div class="options" id="field_option_{{app_name}}_{{model_name}}">
+    {%include 'codeless_django/forms/field_option.html'%}
+    </div>
+    <button  type="submit">Submit</button>
+</form>
+</div>

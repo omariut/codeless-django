@@ -1,0 +1,89 @@
+{% extends 'codeless_django/base.html' %}
+{% block content %}
+
+<h2>Codeless Django</h2>
+<p></p>
+<p></p>
+
+
+<ul id="myUL">
+    <p>App List</p>
+    <div class="d-flex justify-content-start">
+        <form action="{% url 'add-app' %}" method="post">
+          {% csrf_token %}
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Type app name" name="app_name" required>
+            <button class="btn btn-primary" type="submit">
+              <i class="fa fa-plus">Add App</i>
+            </button>
+          </div>
+        </form>
+      </div>
+    {%for key,value in apps.items%}
+    {% with app_name=key models=value.models %}
+  <li><span class="caret">{{app_name}}</span> <a class="trash" href="{% url 'delete-app' app_name %}"> <i class="fa fa-trash-o fa-lg"></i> </a> </a>
+    <ul class="nested">
+        <p>Model List</p>
+        
+        <div class="d-flex justify-content-start">
+            <form action="{% url  'add-model' app_name %}" method="post">
+              {% csrf_token %}
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Type model name" name="model_name" required>
+                <button class="btn btn-primary" type="submit">
+                  <i class="fa fa-plus">Add Model</i>
+                </button>
+              </div>
+            </form>
+          </div>
+    
+    
+    {%for k,v in models.items%}
+      
+    {%  with model_name=k fields=v.fields meta_options=v.meta_options  %} 
+
+    
+      <li><span class="caret">{{model_name}}</span><a class="trash" href="{% url 'delete-model' app_name model_name%}"><i class="fa fa-minus-circle"></i></a>
+
+        <ul class="nested">
+            <div id="#fields_{{app_name}}_{{model_name}}">
+
+            {%include 'codeless_django/fields.html' with fields=fields %}
+            </div>
+          
+         
+
+       
+          {%if meta_options%}
+          <li><span class="caret">class Meta:</span>
+            
+            <ul class="nested">
+                {%for key,value in meta_options.items%}
+              <li>{{key}}={{value}}</li>
+            </ul>
+            {%endfor%}
+          
+          {%else%}
+          {% include 'codeless_django/forms/model_meta_form.html' with model_name=model_name app_name=app_name %}
+        </li>
+
+
+          {%endif%}
+          {% include 'codeless_django/forms/field_form.html' with model_name=model_name app_name=app_name %}
+        </ul>
+
+      </li>  
+
+
+      {%endwith%}
+      {%endfor%}
+
+    </ul>
+
+  </li>
+  {%endwith%}
+  {%endfor%}
+</ul>
+
+
+{% endblock content %}

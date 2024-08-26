@@ -1,0 +1,7 @@
+<label class="form-control" for={{name}}>{{name}} = </label>
+<select class="form-control" name={{name}}>
+{%for choice in choices%}
+<option value={{choice}}>{{choice}}</option>
+{%endfor%}
+
+</select>

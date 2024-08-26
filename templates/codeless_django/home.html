@@ -1,0 +1,119 @@
+{% extends 'codeless_django/base.html' %}
+{% block content %}
+
+
+
+<div class="d-flex justify-content-center">
+    <form action="{% url 'add-app' %}" method="post">
+      {% csrf_token %}
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Type app name" name="app_name" required>
+        <button class="btn btn-primary" type="submit">
+          <i class="fa fa-plus"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+  
+      
+
+
+  
+{%for key,value in apps.items%}
+
+
+<table class="table">
+    <tbody>
+      <tr class="text-center">
+    {% with app_name=key models=value.models %}
+    <form action="{% url  'add-model' app_name %}" method="post">
+      {% csrf_token %}
+      <div >
+        <label for="model_name">Name</label>
+        <input type="text" class="form-control" placeholder="Type Model name" name="model_name">
+      
+      <button type="submit" class="btn btn-primary">Add Model</button>
+    </div>
+    </form>
+    
+        <th colspan="6"> {{ app_name|title }} <a class="text-danger" href="{% url 'delete-app' app_name %}"> <i class="fa fa-trash"></i> </a> </th>
+
+        
+      </tr>
+      <tr>
+        
+        {%for k,v in models.items%}
+      
+        {%  with model_name=k fields=v.fields meta_options=v.meta_options  %}
+        <th colspan="6">class {{model_name}}(models.Model): <a href="{% url 'delete-model' app_name model_name%}" style="margin-left: 10px;"><i class="fa fa-minus-circle"></i></a>
+            
+        
+        </th>
+    </tr>
+        {%for kk,vv in fields.items %}
+        
+        {% with field_name=kk options=vv.options type=vv.type %}
+
+        <tr>
+            <th class="p-0 px-3 d-table-cell" > <a href="{% url 'delete-field' app_name model_name field_name %}" style="margin-left: 10px;"><i class="fa fa-minus-circle"></i></a> </th>
+            <th class="p-0 py-2 d-table-cell">{{field_name}}</th>
+            <th class="p-0 py-2 d-table-cell">=</th>
+            <th class="p-0 py-2 d-table-cell">{{type}}(</th>
+            {%for option in options %}
+            <th class="p-0 py-2 d-table-cell">{{option.name}}={{option.value}},</th>
+            {%endfor%}
+            <th class="p-0 py-2 d-table-cell">)</th>
+          </tr>
+          {%endwith%}
+          {%endfor%}
+
+          {%if meta_options%}
+
+<tr>
+          <a href="{% url 'delete-model-meta' model_name   app_name   %}">Delete Meta</a>
+          <tr class="p-0 px-6"> class Meta:</tr>
+          {%for key,value in meta_options.items%}
+
+          <tr>
+            {{key}}={{value}}
+          </tr>
+{%endfor%}
+{%endif%}
+
+        </tr>
+
+          <tr>
+            <td>{% include 'codeless_django/forms/field_form.html' with model_name=model_name app_name=app_name %}</td>
+          </tr>
+          <tr>
+            <td>
+              {% include 'codeless_django/forms/model_meta_form.html' with model_name=model_name app_name=app_name %}
+
+
+
+            </td>
+          </tr>
+          <tr>
+
+          </tr>
+          {%endwith%}
+
+          {%endfor%}
+         
+          
+    </tbody>
+  </table>
+  {%endwith%}
+  {%endfor%}
+
+  <form action="{%url 'create-app' %}" method="post">
+    <label for="api_views">api_view</label>
+<input type="checkbox" name="api_views" id="api_views" >
+<label for="template_views">template_views</label>
+<input type="checkbox" name="template_views" id="template_views">
+
+    <button type="submit">Create Apps</button>
+  </form>
+
+{% endblock content %}
+

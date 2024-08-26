@@ -1,0 +1,11 @@
+<label for={{name}}>{{name}} = </label>
+<select  name={{name}}>
+{% if default == True %}
+    <option value="">True(default)</option>
+    <option value="False">False</option>
+
+  {%else%}
+  <option value="">False(default)</option>
+  <option value="True">True</option>
+  {%endif%}
+</select>

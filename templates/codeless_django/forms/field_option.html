@@ -1,0 +1,26 @@
+{% load codeless_django_tags %}
+
+{% for option in field_class|get_options_with_default_values %}
+
+{%if option.type == 'dropdown' %}
+{% include 'codeless_django/forms/dropdown_option.html' with name=option.name default=option.default %}
+<br>
+{%endif%}
+
+
+{%if option.type == 'choice' %}
+{% include 'codeless_django/forms/choice_option.html' with name=option.name default=option.default choices=option.choices%}
+<br>
+{%endif%}
+
+{%if option.type == 'number' %}
+<label for={{option.name}}>{{option.name}} = </label>
+<input type="number" name={{option.name}} value={{option.default}}>
+{%endif%}
+
+{%if option.type == 'text' %}
+<label for={{option.name}}>{{option.name}} = </label>
+<input type="text" name={{option.name}} value={{option.default}}>
+{%endif%}
+
+{%endfor%}

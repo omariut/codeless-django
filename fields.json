@@ -1,0 +1,142 @@
+{
+    "Common": 
+    [
+        {"name":"null","type":"dropdown", "default":false},
+        {"name":"blank","type":"dropdown", "default":false},
+        {"name":"editable", "type":"dropdown","default":true},
+        {"name":"choices", "type":"text","default":""},
+        {"name":"db_column", "type":"text", "default":""},
+        {"name":"db_index", "type":"dropdown", "default":false},
+        {"name":"default", "type":"text", "default":""},
+        {"name":"help_text", "type":"text", "default":""},
+        {"name":"primary_key", "type":"dropdown", "default":false},
+        {"name":"unique", "type":"dropdown", "default":false},
+        {"name":"verbose_name", "type":"text", "default":""}
+        
+    ],
+
+    "BinaryField":[
+        {"name":"max_length", "type":"text", "default":""}
+
+    ],
+    "BooleanField":[
+
+    ],
+    "CharField":[
+        {"name":"max_length", "type":"number", "default":100}
+    ],
+    "DateField":[
+        {"name":"auto_now", "type":"dropdown", "default":false},
+        {"name":"auto_now_add", "type":"dropdown", "default":false}
+       
+    ],
+    "DateTimeField":[
+        {"name":"auto_now", "type":"dropdown", "default":false},
+        {"name":"auto_now_add", "type":"dropdown", "default":false}
+       
+    ],
+    "DecimalField":[
+        {"name":"max_digits", "type":"number", "default":5},
+        {"name":"decimal_places", "type":"number", "default":2}
+    ],
+    "DurationField":[
+
+    ],
+    "EmailField":[
+        {"name":"max_length", "type":"number", "default":254}
+    ],
+    "FileField":[
+        {"name":"upload_to", "type":"text", "default":""},
+        {"name":"storage", "type":"text", "default":""},
+        {"name":"max_length", "type":"number", "default":100}
+
+    ],
+  
+    "FloatField":
+    [],
+    "GenericIPAddressField":[
+        {"name":"protocol", "type":"text", "default":"both"},
+        {"name":"unpack_ipv4", "type":"dropdown", "default":false}
+
+    ],
+    "ImageField":[
+        {"name":"upload_to", "type":"text", "default":""},
+        {"name":"height_field", "type":"text", "default":""},
+        {"name":"width_field", "type":"text", "default":""},
+        {"name":"max_length", "type":"number", "default":100}
+
+
+    ],
+    "IntegerField":[
+
+    ],
+    "JSONField":[
+        {"name":"encoder", "type":"text", "default":""},
+        {"name":"decoder", "type":"text", "default":""}
+    ],
+    "PositiveBigIntegerField":[],
+    "PositiveIntegerField":[],
+    "PositiveSmallIntegerField":[],
+    "SlugField":[
+        {"name":"max_length", "type":"number", "default":50}
+    ],
+    "SmallAutoField":[],
+    "SmallIntegerField":[],
+    "TextField":[],
+    "TimeField":[
+        {"name":"auto_now", "type":"dropdown", "default":false},
+        {"name":"auto_now_add", "type":"dropdown", "default":false}
+ 
+    ],
+    "URLField":[
+        {"name":"max_length", "type":"number", "default":200}
+    ],
+    "UUIDField":[],
+    "ForeignKey":[
+        {"name":"to", "type":"text", "default":"Model-Name"},
+        {"name":"on_delete", "type":"choice", "choices":[
+            "models.CASCADE",
+            "models.PROTECT",
+            "models.RESTRICT",
+            "models.SET_NULL",
+            "models.SET_DEFAULT"
+
+        ] ,"default":""},
+        {"name":"limit_choices_to", "type":"text", "default":""},
+        {"name":"related_name", "type":"text", "default":""},
+        {"name":"related_query_name", "type":"text", "default":""},
+        {"name":"to_field", "type":"text", "default":""}
+
+
+    ],
+    "ManyToManyField":[
+        {"name":"to", "type":"text", "default":"MOdel Name"},
+        {"name":"limit_choices_to", "type":"text", "default":""},
+        {"name":"related_name", "type":"text", "default":""},
+        {"name":"related_query_name", "type":"text", "default":""},
+        {"name":"through", "type":"text", "default":""},
+        {"name":"through_fields", "type":"text", "default":""},
+        {"name":"db_table", "type":"text", "default":""}
+
+
+    ],
+    "OneToOneField":[
+        {"name":"to", "type":"text", "default":""},
+        {"name":"on_delete", "type":"choice", "choices":[
+            "models.CASCADE",
+            "models.PROTECT",
+            "models.RESTRICT",
+            "models.SET_NULL",
+            "models.SET_DEFAULT"
+
+        ] ,"default":""},
+
+
+
+        {"name":"limit_choices_to", "type":"text", "default":""},
+        {"name":"related_name", "type":"text", "default":""},
+        {"name":"parent_link", "type":"dropdown", "default":false}
+
+
+    ]
+}

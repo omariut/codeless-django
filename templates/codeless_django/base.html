@@ -1,0 +1,88 @@
+{% load codeless_django_tags %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Codeless Django</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <style>
+      body{
+        font-size: x-large;
+      }
+      ul, #myUL {
+        list-style-type: none;
+      }
+      
+      #myUL {
+        margin: 5;
+        padding: 5;
+      }
+      
+      .caret {
+        cursor: pointer;
+        -webkit-user-select: none; /* Safari 3.1+ */
+        -moz-user-select: none; /* Firefox 2+ */
+        -ms-user-select: none; /* IE 10+ */
+        user-select: none;
+        margin: 5px;
+        padding: 5px;
+      }
+      
+      .caret::before {
+        content: "\25B6";
+        color: black;
+        display: inline-block;
+        margin-right: 6px;
+      }
+      
+      .caret-down::after {
+        -ms-transform: rotate(90deg); /* IE 9 */
+        -webkit-transform: rotate(90deg); 
+        transform: rotate(90deg);  
+      }
+      
+      .nested {
+        display: block;
+      
+      }
+      
+      .active {
+        display: none;
+      }
+      .trash{
+          color: red;
+      }
+      </style>
+</head>
+
+<body>
+
+  
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://unpkg.com/htmx.org@1.8.6"></script>
+<script>
+  var toggler = document.getElementsByClassName("caret");
+  var i;
+  
+  for (i = 0; i < toggler.length; i++) {
+    toggler[i].addEventListener("click", function() {
+      this.parentElement.querySelector(".nested").classList.toggle("active");
+      this.classList.toggle("caret-down");
+    });
+  }
+  </script>
+</html>
