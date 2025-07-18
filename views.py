@@ -98,7 +98,7 @@ def delete_meta_options(request,app_name,model_name):
 def create_apps(request):
     write_template_views=bool(request.POST.get("template_views"))
     write_api_views=bool(request.POST.get("api_views"))
-    data=data_manager._load_data()
-    app_writer = WriteApps(data["apps"],write_template_views,write_api_views)
-    app_writer.write()
+    args = "--api-views" if write_api_views else ""
+    args += " --template-views" if write_template_views else ""
+    os.system(f"python manage.py writeapps {args}")
     return redirect('/swagger/')
