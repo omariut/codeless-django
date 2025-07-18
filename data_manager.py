@@ -5,11 +5,12 @@ import os
 
 class DataManager:
     def __init__(self, file: str = 'data.json') -> None:
-        if not os.path.exists('data.json'):
+        self.file: str = file
+        if not os.path.exists(file):
             with open(file, 'w') as f:
                 json.dump({"apps": {}}, f)
 
-        self.file: str = file
+        
         self.data: Dict[str, Dict[str, Dict[str, Union[Dict[str, Union[str, List[Dict[str, str]]]], Dict[str, Dict[str, Union[str, List[Dict[str, str]]]]]]]]] = self._load_data()
 
     def _load_data(self) -> Dict[str, Dict[str, Dict[str, Union[Dict[str, Union[str, List[Dict[str, str]]]], Dict[str, Dict[str, Union[str, List[Dict[str, str]]]]]]]]]:
