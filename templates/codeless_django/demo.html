@@ -85,5 +85,12 @@
   {%endfor%}
 </ul>
 
+<form action="{%url 'create-app' %}" method="post">
+  <label for="api_views">api_view</label>
+<input type="checkbox" name="api_views" id="api_views" >
+<label for="template_views">template_views</label>
+<input type="checkbox" name="template_views" id="template_views">
 
+  <button type="submit">Create Apps</button>
+</form>
 {% endblock content %}
