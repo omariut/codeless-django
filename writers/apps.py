@@ -108,12 +108,12 @@ class WriteApps:
         if self.write_api_views:
             file_writer.write_new_package_in_requirements_text('djangorestframework', "3.14.0")
         os.system('pip install -r requirements.txt')
-        os.system("python3 manage.py makemigrations")
-        os.system("python3 manage.py migrate")
         doc_writer=DocumentationWriter()
         doc_writer.write_documentation_url()
         self.initiate_app_urls_and_views_files()
         self.include_app_to_settings()
+        os.system("python3 manage.py makemigrations")
+        os.system("python3 manage.py migrate")
         self.include_app_urls()
 
         
@@ -123,7 +123,6 @@ class WriteApps:
                 self.write_app_views(app_name, model_name)
                 self.write_serializers(app_name, model_name)
                 self.write_app_api_views(app_name, model_name)
-      
         
 
 
