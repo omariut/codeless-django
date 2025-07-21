@@ -101,4 +101,7 @@ def create_apps(request):
     args = "--api-views" if write_api_views else ""
     args += " --template-views" if write_template_views else ""
     os.system(f"python manage.py writeapps {args}")
-    return redirect('/swagger/')
+    if write_api_views:
+        return redirect('/swagger/')
+    else:
+        return redirect('/')
